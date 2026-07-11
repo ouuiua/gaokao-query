@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>河北省高校分数查询</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <span class="logo-icon">&#127891;</span>
+        <h1>河北省高校分数查询</h1>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>查询河北省内高校录取分数</h2>
+      <p class="subtitle">输入分数，快速查找对应学校和专业</p>
+    </div>
+  </section>
+
+  <section class="search-section">
+    <div class="container">
+      <div class="search-card">
+        <form id="search-form" class="search-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="score-type">科类</label>
+              <select id="score-type" required>
+                <option value="">请选择</option>
+                <option value="物理">物理类</option>
+                <option value="历史">历史类</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="score">高考分数</label>
+              <input type="number" id="score" min="0" max="750" placeholder="输入分数" required>
+            </div>
+            <div class="form-group">
+              <label for="batch">批次</label>
+              <select id="batch">
+                <option value="">全部批次</option>
+                <option value="本科一批">本科一批</option>
+                <option value="本科二批">本科二批</option>
+                <option value="专科">专科批</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group form-group-wide">
+            <label for="keyword">关键词搜索（可选）</label>
+            <input type="text" id="keyword" placeholder="输入学校名称或专业，如：计算机、医学">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">开始查询</button>
+            <button type="reset" class="btn btn-secondary">重置</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="results-section" style="display:none;">
+    <div class="container">
+      <div class="results-header">
+        <h2><span class="results-icon">&#127871;</span> 查询结果</h2>
+        <div class="results-summary" id="results-summary"></div>
+      </div>
+      <div class="filter-bar">
+        <div class="filter-tags">
+          <span class="filter-label">筛选：</span>
+          <button class="filter-tag active" data-filter="all">全部</button>
+          <button class="filter-tag" data-filter="冲">冲刺</button>
+          <button class="filter-tag" data-filter="稳">稳妥</button>
+          <button class="filter-tag" data-filter="保">保底</button>
+        </div>
+        <div class="sort-select">
+          <label for="sort-by">排序：</label>
+          <select id="sort-by">
+            <option value="match">匹配度优先</option>
+            <option value="score-desc">分数从高到低</option>
+            <option value="score-asc">分数从低到高</option>
+            <option value="name">学校名称</option>
+          </select>
+        </div>
+      </div>
+      <div id="results-list" class="results-list"></div>
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>数据来源：各高校官网及河北省教育考试院公布数据，仅供参考，请以官方最新发布为准。</p>
+    </div>
+  </footer>
+
+  <div id="loading" class="loading-overlay" style="display:none;">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>正在查询...</p>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
